@@ -1,7 +1,8 @@
 'use client';
 import { DropdownMenu, DropdownMenuContent } from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Filter } from 'lucide-react';
 import { useState } from 'react';
 
 const SORT_OPTIONS = [
@@ -27,10 +28,27 @@ export default function Home() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end'>
               {SORT_OPTIONS.map((option) => (
-                <button key={option.name} onClick={option.value}></button>
+                <button
+                  key={option.name}
+                  className={cn('text-left w-full block px-4 py-2 text-sm', {
+                    'text-gray-900 bg-gray-100': option.value === filter.sort,
+                    'text-gray-500': option.value !== filter.sort,
+                  })}
+                  onClick={() => {
+                    setFilter((prev) => ({
+                      ...prev,
+                      sort: option.value,
+                    }));
+                  }}
+                >
+                  {option.name}
+                </button>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+          <button className='-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden'>
+            <Filter className='h-5 w-5' />
+          </button>
         </div>
       </div>
     </main>
