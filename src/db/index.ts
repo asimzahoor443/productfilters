@@ -1,5 +1,5 @@
 import { Index } from '@upstash/vector';
-type Product = {
+export type Product = {
   id: string;
   imageId: string;
   name: string;
