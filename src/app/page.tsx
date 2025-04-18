@@ -2,6 +2,7 @@
 import { DropdownMenu, DropdownMenuContent } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
+import { useQuery } from '@tanstack/react-query';
 import { ChevronDown, Filter } from 'lucide-react';
 import { useState } from 'react';
 
@@ -13,6 +14,10 @@ const SORT_OPTIONS = [
 export default function Home() {
   const [filter, setFilter] = useState({
     sort: 'none',
+  });
+
+  const {} = useQuery({
+    queryKey: ['products', filter],
   });
   return (
     <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
